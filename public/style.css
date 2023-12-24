@@ -1,0 +1,446 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"); */
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: inherit;
+  border: inherit;
+}
+
+button:not(:disabled):hover {
+  cursor: pointer;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.wrapper {
+  max-width: 823px;
+}
+
+.dateInput__header {
+  display: flex;
+  gap: 5px;
+}
+
+.dateInput svg {
+  width: 24px;
+  height: 24px;
+}
+
+.clear-button {
+  width: 24px;
+  padding: 5px;
+  color: #2879ff;
+  background-color: #d4f6ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  display: none;
+}
+
+.dateInput {
+  flex: 1;
+  display: flex;
+  padding: 10.043px 21.631px;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.5px solid #969fa8;
+  background: #f6f6f6;
+  height: 51px;
+}
+
+.dateInput__inner {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.dateInput[data-open],
+.dateInput[data-open]:has([data-numeric-value]) .dateInput__inner,
+.dateInput[data-open] .clear-button {
+  background-color: #fff;
+}
+
+.dateInput:has([data-numeric-value]) {
+  padding: 5px;
+  align-items: stretch;
+  gap: 5px;
+}
+
+.dateInput:has([data-numeric-value]) .clear-button {
+  display: flex;
+}
+
+.dateInput:has([data-numeric-value]) .dateInput__inner {
+  background-color: #d4f6ff;
+  padding: 5px 13px;
+}
+
+.dateInput__label {
+  color: #434c4e;
+  text-align: center;
+  font-size: 14.678px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.placeholderPart {
+  color: #b2b4b4;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.placeholderPart:not(:last-child)::after {
+  content: ".";
+  color: #000;
+}
+
+.dateInput [data-text-value]::before {
+  content: attr(data-text-value);
+}
+
+.dateInput[data-open] [data-numeric-value]::before {
+  content: attr(data-numeric-value);
+}
+
+.dateInput__placeholder:has(+ [data-numeric-value]),
+.dateInput__placeholder:has(+ [data-text-value]) {
+  display: none;
+}
+
+.dateInput__value {
+  font-weight: 700;
+  color: #000;
+}
+
+.clear-button[data-tooltip]:hover {
+  position: relative;
+  background-color: #2879ff;
+  color: #d4f6ff;
+  cursor: pointer;
+}
+
+.clear-button[data-tooltip]:hover::after {
+  position: absolute;
+  width: 180px;
+  height: 56px;
+  padding: 23px 19px 11px 20px;
+  content: attr(data-tooltip);
+  box-sizing: border-box;
+  left: calc(50% - 90px);
+  top: calc(100% + 5px);
+  cursor: pointer;
+  color: #434c4e;
+  text-align: center;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  z-index: 10;
+  line-height: normal;
+  background-image: url("./icons/tooltip.svg");
+  background-size: cover;
+}
+
+.yearView,
+.monthView {
+  display: none;
+}
+
+.pickerContent {
+  display: none;
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+}
+
+.pickerContent:hover {
+  cursor: pointer;
+}
+
+.dateInput[data-open] .pickerContent {
+  display: block;
+}
+
+.pickerItem {
+  background-color: #fff;
+  display: flex;
+  width: 100%;
+  padding: 11px 6px;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.5px solid #969fa8;
+  background: #fff;
+}
+
+.pickerItem__inner {
+  color: #2961fe;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.pickerItem .pickerItem__inner {
+  display: flex;
+  align-items: center;
+}
+
+.pickerItem .pickerItem__inner::after {
+  content: "";
+  background-image: url("./icons/arrow.svg");
+  background-color: transparent;
+  border: none;
+  width: 29px;
+  height: 29px;
+  transform: rotate(180deg);
+}
+
+.pickerItem__button {
+  background-image: url("./icons/arrow.svg");
+  background-color: transparent;
+  border: none;
+  width: 29px;
+  height: 29px;
+}
+
+.pickerItem__button.controls {
+  transform: rotate(-90deg);
+}
+
+.pickerItem__button.controls.next {
+  transform: rotate(90deg);
+}
+
+.pickerItem .pickerItem__inner[data-value]::before {
+  content: attr(data-value);
+}
+
+.pickerItem[data-view="year"] .pickerItem__inner:not([data-value]):before {
+  content: "Выберите год";
+}
+
+.pickerItem[data-view="month"] .pickerItem__inner:not([data-value]):before {
+  content: "Выберите месяц";
+}
+
+.dateInput[data-active-view="year"] .pickerItem {
+  display: none;
+}
+
+.dateInput[data-active-view="year"] .yearView {
+  display: flex;
+}
+
+.dateInput[data-active-view="month"] .monthView {
+  display: block;
+}
+
+.yearView {
+  flex-direction: column;
+  height: 100%;
+}
+
+.yearView input {
+  width: 100%;
+  padding: 11px 6px;
+  text-align: center;
+  color: #2961fe;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: 0.5px solid #969fa8;
+  background: #fff;
+}
+
+.yearView__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 15px;
+  padding: 10px;
+  border: 1px solid #b2b4b4;
+  background: #fff;
+  flex: 1;
+}
+
+.yearView__button {
+  display: flex;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #b2b4b4;
+  color: #000;
+  text-align: center;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.yearView__button:hover {
+  background-color: #b2b4b4;
+}
+
+.monthView {
+  position: relative;
+}
+
+.monthView__content {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.month__button {
+  display: flex;
+  width: 100%;
+  padding: 14px 0px;
+  color: #2961fe;
+  font-size: 19px;
+  align-items: center;
+  border: 0.5px solid #969fa8;
+  background: #fff;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+}
+
+.month__button:hover {
+  background-color: #eff0f0;
+}
+
+.pickerContent {
+  height: 450px;
+}
+
+.actions {
+  display: flex;
+  width: 100%;
+  padding: 14px 10px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  background: #f6f6f6;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.actions__btn {
+  text-align: center;
+  font-size: 19px;
+  padding: 4px 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background-color: transparent;
+  border: none;
+  color: #2879ff;
+}
+
+.actions__btn.accept {
+  background-color: #2879ff;
+  color: #fff;
+}
+
+.actions__btn.accept:disabled {
+  background-color: #b2b4b4;
+  cursor: default;
+}
+
+.actions__wrapper {
+  display: none;
+  align-items: flex-end;
+  height: 529px;
+}
+
+.dateInput__header:has([data-open]):not(:has([data-active-view="year"]))
+  ~ .actions__wrapper {
+  display: flex;
+}
+
+.calendar {
+  display: none;
+}
+
+.dateInput[data-active-month]:not([data-active-view="year"]) .calendar {
+  display: block;
+}
+
+.calendar td {
+  padding: 18px 16px;
+  font-size: 19px;
+}
+
+.calendar thead td {
+  color: #000;
+}
+
+.calendar tbody td {
+  color: #6ca3fe;
+  background-color: #f6f6f6;
+}
+
+.calendar tbody td:empty {
+  background-color: #fff;
+}
+
+.calendar tbody td.primary {
+  background-color: #2879ff;
+  color: #fff;
+}
+
+.calendar tbody td.secondary {
+  background-color: #d4f6ff;
+  color: #2961fe;
+}
+
+.calendar,
+.calendar tr,
+.calendar td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  border: 0.5px solid #969fa8;
+}
+
+.dateInput__header:has([data-open]) ~ .errorContainer {
+  display: none;
+}
+
+.errorContainer {
+  display: flex;
+  padding: 7px 7px 0;
+  align-items: center;
+  font-size: 19px;
+  color: #c80000;
+  gap: 5px;
+}
+
+.errorContainer::before {
+  content: "";
+  width: 26px;
+  height: 26px;
+  background-image: url("./icons/error.svg");
+  background-size: cover;
+}
+
+.errorContainer:empty {
+  display: none;
+}

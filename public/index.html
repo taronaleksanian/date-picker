@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date range picker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <input type="date" name="" id="" />
+    <div class="wrapper">
+      <div class="dateInput__wrapper" data-for="date-input-1">
+        <div class="dateInput__header">
+          <input
+            type="hidden"
+            name="date-input-1-start"
+            data-range-input="date-input-1"
+            data-date-type="start"
+          />
+          <div role="button" tabindex="0" class="dateInput">
+            <div class="dateInput__inner">
+              <span class="dateInput__label">
+                Дата от
+                <span class="dateInput__placeholder">
+                  <span class="placeholderPart">дд</span
+                  ><span class="placeholderPart">мм</span
+                  ><span class="placeholderPart">гггг</span>
+                </span>
+                <span class="dateInput__value"></span>
+              </span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.9702 3.4856H16.3704V2.3714C16.3704 2.2729 16.3313 2.17843 16.2617 2.10878C16.192 2.03913 16.0975 2 15.999 2C15.9005 2 15.8061 2.03913 15.7364 2.10878C15.6668 2.17843 15.6276 2.2729 15.6276 2.3714V3.4856H7.45681V2.3714C7.45681 2.2729 7.41768 2.17843 7.34803 2.10878C7.27838 2.03913 7.18391 2 7.08541 2C6.98691 2 6.89244 2.03913 6.82279 2.10878C6.75314 2.17843 6.71401 2.2729 6.71401 2.3714V3.4856H4.1142C3.8187 3.4856 3.5353 3.60299 3.32634 3.81194C3.11739 4.02089 3 4.3043 3 4.5998V19.4558C3 19.7513 3.11739 20.0347 3.32634 20.2437C3.5353 20.4526 3.8187 20.57 4.1142 20.57H18.9702C19.2657 20.57 19.5491 20.4526 19.7581 20.2437C19.9671 20.0347 20.0844 19.7513 20.0844 19.4558V4.5998C20.0844 4.3043 19.9671 4.02089 19.7581 3.81194C19.5491 3.60299 19.2657 3.4856 18.9702 3.4856ZM4.1142 4.2284H6.71401V5.3426C6.71401 5.4411 6.75314 5.53557 6.82279 5.60522C6.89244 5.67487 6.98691 5.714 7.08541 5.714C7.18391 5.714 7.27838 5.67487 7.34803 5.60522C7.41768 5.53557 7.45681 5.4411 7.45681 5.3426V4.2284H15.6276V5.3426C15.6276 5.4411 15.6668 5.53557 15.7364 5.60522C15.8061 5.67487 15.9005 5.714 15.999 5.714C16.0975 5.714 16.192 5.67487 16.2617 5.60522C16.3313 5.53557 16.3704 5.4411 16.3704 5.3426V4.2284H18.9702C19.0687 4.2284 19.1632 4.26753 19.2329 4.33718C19.3025 4.40683 19.3416 4.5013 19.3416 4.5998V7.9424H3.7428V4.5998C3.7428 4.5013 3.78193 4.40683 3.85158 4.33718C3.92123 4.26753 4.0157 4.2284 4.1142 4.2284ZM18.9702 19.8272H4.1142C4.0157 19.8272 3.92123 19.7881 3.85158 19.7184C3.78193 19.6488 3.7428 19.5543 3.7428 19.4558V8.6852H19.3416V19.4558C19.3416 19.5543 19.3025 19.6488 19.2329 19.7184C19.1632 19.7881 19.0687 19.8272 18.9702 19.8272Z"
+                  fill="black"
+                />
+              </svg>
+            </div>
+            <button class="clear-button" data-tooltip="Очистить поле?">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 2.5L21.33 20.83M3 20.83L21.33 2.5"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <div class="pickerContent">
+              <div class="pickerItem" role="button" data-view="year">
+                <button class="pickerItem__button controls"></button>
+                <div class="pickerItem__content">
+                  <span class="pickerItem__inner"></span>
+                </div>
+                <button class="pickerItem__button controls next"></button>
+              </div>
+              <div class="pickerItem" data-view="month">
+                <button class="pickerItem__button controls"></button>
+                <div class="pickerItem__content">
+                  <span class="pickerItem__inner"></span>
+                </div>
+                <button class="pickerItem__button controls next"></button>
+              </div>
+              <div class="yearView">
+                <input type="number" />
+                <div class="yearView__content"></div>
+                <div class="actions">
+                  <button class="actions__btn">Сбросить</button>
+                  <button class="actions__btn accept">Применить</button>
+                </div>
+              </div>
+              <div class="monthView">
+                <div class="monthView__content">
+                  <button class="month__button" data-value="0">Январь</button>
+                  <button class="month__button" data-value="1">Февраль</button>
+                  <button class="month__button" data-value="2">Март</button>
+                  <button class="month__button" data-value="3">Апрель</button>
+                  <button class="month__button" data-value="4">Май</button>
+                  <button class="month__button" data-value="5">Июнь</button>
+                  <button class="month__button" data-value="6">Июль</button>
+                  <button class="month__button" data-value="7">Август</button>
+                  <button class="month__button" data-value="8">Сентябрь</button>
+                  <button class="month__button" data-value="9">Октябрь</button>
+                  <button class="month__button" data-value="10">Ноябрь</button>
+                  <button class="month__button" data-value="11">Декабрь</button>
+                </div>
+              </div>
+              <div>
+                <table class="calendar">
+                  <thead>
+                    <tr>
+                      <td>Пн</td>
+                      <td>Вт</td>
+                      <td>Ср</td>
+                      <td>Чт</td>
+                      <td>Пт</td>
+                      <td>Сб</td>
+                      <td>Вс</td>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <input
+            type="hidden"
+            name="date-input-1-end"
+            data-range-input="date-input-1"
+            data-date-type="end"
+          />
+          <div role="button" tabindex="0" class="dateInput">
+            <div class="dateInput__inner">
+              <span class="dateInput__label">
+                Дата от
+                <span class="dateInput__placeholder">
+                  <span class="placeholderPart">дд</span
+                  ><span class="placeholderPart">мм</span
+                  ><span class="placeholderPart">гггг</span>
+                </span>
+                <span class="dateInput__value"></span>
+              </span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.9702 3.4856H16.3704V2.3714C16.3704 2.2729 16.3313 2.17843 16.2617 2.10878C16.192 2.03913 16.0975 2 15.999 2C15.9005 2 15.8061 2.03913 15.7364 2.10878C15.6668 2.17843 15.6276 2.2729 15.6276 2.3714V3.4856H7.45681V2.3714C7.45681 2.2729 7.41768 2.17843 7.34803 2.10878C7.27838 2.03913 7.18391 2 7.08541 2C6.98691 2 6.89244 2.03913 6.82279 2.10878C6.75314 2.17843 6.71401 2.2729 6.71401 2.3714V3.4856H4.1142C3.8187 3.4856 3.5353 3.60299 3.32634 3.81194C3.11739 4.02089 3 4.3043 3 4.5998V19.4558C3 19.7513 3.11739 20.0347 3.32634 20.2437C3.5353 20.4526 3.8187 20.57 4.1142 20.57H18.9702C19.2657 20.57 19.5491 20.4526 19.7581 20.2437C19.9671 20.0347 20.0844 19.7513 20.0844 19.4558V4.5998C20.0844 4.3043 19.9671 4.02089 19.7581 3.81194C19.5491 3.60299 19.2657 3.4856 18.9702 3.4856ZM4.1142 4.2284H6.71401V5.3426C6.71401 5.4411 6.75314 5.53557 6.82279 5.60522C6.89244 5.67487 6.98691 5.714 7.08541 5.714C7.18391 5.714 7.27838 5.67487 7.34803 5.60522C7.41768 5.53557 7.45681 5.4411 7.45681 5.3426V4.2284H15.6276V5.3426C15.6276 5.4411 15.6668 5.53557 15.7364 5.60522C15.8061 5.67487 15.9005 5.714 15.999 5.714C16.0975 5.714 16.192 5.67487 16.2617 5.60522C16.3313 5.53557 16.3704 5.4411 16.3704 5.3426V4.2284H18.9702C19.0687 4.2284 19.1632 4.26753 19.2329 4.33718C19.3025 4.40683 19.3416 4.5013 19.3416 4.5998V7.9424H3.7428V4.5998C3.7428 4.5013 3.78193 4.40683 3.85158 4.33718C3.92123 4.26753 4.0157 4.2284 4.1142 4.2284ZM18.9702 19.8272H4.1142C4.0157 19.8272 3.92123 19.7881 3.85158 19.7184C3.78193 19.6488 3.7428 19.5543 3.7428 19.4558V8.6852H19.3416V19.4558C19.3416 19.5543 19.3025 19.6488 19.2329 19.7184C19.1632 19.7881 19.0687 19.8272 18.9702 19.8272Z"
+                  fill="black"
+                />
+              </svg>
+            </div>
+            <button class="clear-button" data-tooltip="Очистить поле?">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 2.5L21.33 20.83M3 20.83L21.33 2.5"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <div class="pickerContent">
+              <div class="pickerItem" role="button" data-view="year">
+                <button class="pickerItem__button controls"></button>
+                <div class="pickerItem__content">
+                  <span class="pickerItem__inner"></span>
+                </div>
+                <button class="pickerItem__button controls next"></button>
+              </div>
+              <div class="pickerItem" data-view="month">
+                <button class="pickerItem__button controls"></button>
+                <div class="pickerItem__content">
+                  <span class="pickerItem__inner"></span>
+                </div>
+                <button class="pickerItem__button controls next"></button>
+              </div>
+              <div class="yearView">
+                <input type="number" />
+                <div class="yearView__content"></div>
+                <div class="actions">
+                  <button class="actions__btn">Сбросить</button>
+                  <button class="actions__btn accept">Применить</button>
+                </div>
+              </div>
+              <div class="monthView">
+                <div class="monthView__content">
+                  <button class="month__button" data-value="0">Январь</button>
+                  <button class="month__button" data-value="1">Февраль</button>
+                  <button class="month__button" data-value="2">Март</button>
+                  <button class="month__button" data-value="3">Апрель</button>
+                  <button class="month__button" data-value="4">Май</button>
+                  <button class="month__button" data-value="5">Июнь</button>
+                  <button class="month__button" data-value="6">Июль</button>
+                  <button class="month__button" data-value="7">Август</button>
+                  <button class="month__button" data-value="8">Сентябрь</button>
+                  <button class="month__button" data-value="9">Октябрь</button>
+                  <button class="month__button" data-value="10">Ноябрь</button>
+                  <button class="month__button" data-value="11">Декабрь</button>
+                </div>
+              </div>
+              <div>
+                <table class="calendar">
+                  <thead>
+                    <tr>
+                      <td>Пн</td>
+                      <td>Вт</td>
+                      <td>Ср</td>
+                      <td>Чт</td>
+                      <td>Пт</td>
+                      <td>Сб</td>
+                      <td>Вс</td>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="actions__wrapper">
+          <div class="actions calendarActions">
+            <button class="actions__btn">Сбросить</button>
+            <button class="actions__btn accept" disabled>Применить</button>
+          </div>
+        </div>
+        <div class="errorContainer"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
